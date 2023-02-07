@@ -1,6 +1,4 @@
-# cleanutter
-
-A new Flutter project.
+# spurs
 
 ## Getting Started
 
