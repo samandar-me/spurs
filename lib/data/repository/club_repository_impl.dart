@@ -15,8 +15,8 @@ class ClubRepositoryImpl extends ClubRepository {
   final LocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
-  ClubRepositoryImpl(
-      this.localDataSource, this.remoteDataSource, this.networkInfo);
+  ClubRepositoryImpl(this.localDataSource, this.remoteDataSource,
+      this.networkInfo);
 
   @override
   Future<Either<Failure, List<Club>>> getAllClubs() async {
@@ -41,7 +41,8 @@ class ClubRepositoryImpl extends ClubRepository {
         clubName: club.clubName,
         image: club.image,
         position: club.position,
-        shortName: club.shortName);
+        shortName: club.shortName,
+        league: club.league);
 
     return await _getMessage(() {
       return remoteDataSource.addClub(clubDto);
@@ -62,7 +63,8 @@ class ClubRepositoryImpl extends ClubRepository {
         clubName: club.clubName,
         image: club.image,
         position: club.position,
-        shortName: club.shortName);
+        shortName: club.shortName,
+    league: club.league);
     return await _getMessage(() => remoteDataSource.updateClub(id, clubDto));
   }
 

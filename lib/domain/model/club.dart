@@ -7,8 +7,9 @@ class Club extends Equatable {
   final String shortName;
   final String image;
   final int position;
+  final String league;
 
-  const Club({required this.id, required this.clubName, required this.image, required this.position, required this.shortName});
+  const Club({required this.id, required this.clubName, required this.image, required this.position, required this.shortName,required this.league});
 
   @override
   List<Object> get props => [id,clubName,shortName,image,position];
