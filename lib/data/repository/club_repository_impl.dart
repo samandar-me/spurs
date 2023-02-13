@@ -74,6 +74,7 @@ class ClubRepositoryImpl extends ClubRepository {
         await invoke();
         return const Right(unit);
       } catch (e) {
+        print(e.toString());
         return Left(UnknownFailure());
       }
     } else {

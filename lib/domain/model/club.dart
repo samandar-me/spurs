@@ -6,7 +6,7 @@ class Club extends Equatable {
   final String clubName;
   final String shortName;
   final String image;
-  final int position;
+  final String position;
   final String league;
 
   const Club({required this.id, required this.clubName, required this.image, required this.position, required this.shortName,required this.league});

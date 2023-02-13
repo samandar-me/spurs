@@ -1,5 +1,4 @@
 import 'package:cleanutter/data/model/club_dto.dart';
-import 'package:cleanutter/domain/model/club.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -32,7 +31,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   
   @override
   Future<Unit> addClub(ClubDto club) async {
-    final response = await client.post(Uri.parse("$baseUrl/clubs"), body: club);
+    final body = {
+      'id': club.id,
+      'clubName': club.clubName,
+      'image': club.image,
+      'position': club.position,
+      'shortName': club.shortName,
+      'league': club.league
+    };
+    final response = await client.post(Uri.parse("$baseUrl/clubs"), body: body);
     if (response.statusCode == 201) {
       return Future.value(unit);
     } else {
@@ -42,7 +49,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Unit> deleteClub(String id) async {
-    final response = await client.delete(Uri.parse("$baseUrl/clubs/$id)"));
+    var uri = Uri.parse("$baseUrl/clubs/${id.toString()}");
+    final response = await client.delete(uri);
     if(response.statusCode == 200) {
       return Future.value(unit);
     } else {
@@ -52,7 +60,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Unit> updateClub(String id, ClubDto club) async {
-    final response = await client.patch(Uri.parse("$baseUrl/clubs/$id"),body: club);
+    final body = {
+      'id': id,
+      'clubName': club.clubName,
+      'image': club.image,
+      'position': club.position,
+      'shortName': club.shortName,
+      'league': club.league
+    };
+    final response = await client.patch(Uri.parse("$baseUrl/clubs/$id"),body: body);
     if(response.statusCode == 200) {
       return Future.value(unit);
     } else {

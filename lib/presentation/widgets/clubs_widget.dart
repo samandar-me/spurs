@@ -1,4 +1,6 @@
 import 'package:cleanutter/domain/model/club.dart';
+import 'package:cleanutter/presentation/pages/add_update_page.dart';
+import 'package:cleanutter/presentation/pages/detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +19,16 @@ class ClubsWidget extends StatelessWidget {
             title: Text(club.clubName),
             subtitle: Text(club.shortName),
             trailing:
-                IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                IconButton(onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => AddUpdatePage(isForUpdate: true, club: club))
+                  );
+                }, icon: const Icon(Icons.edit)),
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(club: club)));
+            },
           );
         },
         separatorBuilder: (context, index) => const Divider(thickness: 1),

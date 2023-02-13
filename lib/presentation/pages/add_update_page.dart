@@ -1,6 +1,7 @@
 import 'package:cleanutter/domain/model/club.dart';
 import 'package:cleanutter/presentation/bloc/detail/detail_bloc.dart';
 import 'package:cleanutter/presentation/bloc/detail/detail_state.dart';
+import 'package:cleanutter/presentation/pages/clubs_page.dart';
 import 'package:cleanutter/presentation/widgets/loading_widget.dart';
 import 'package:cleanutter/presentation/widgets/snackbar_message.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,8 @@ class AddUpdatePage extends StatelessWidget {
           listener: (context, state) {
             if(state is MessageDetailState) {
               SnackBarMessage().showSuccessSnackBar(message: state.message, context: context);
-              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (_) => const ClubsPage()), (route) => false);
             } else if (state is ErrorDetailState) {
               SnackBarMessage().showErrorSnackBar(message: state.message, context: context);
             }
